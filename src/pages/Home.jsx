@@ -3,17 +3,23 @@ import useTitleColorContext from "../hooks/useTitleColorContext";
 function Home() {
 
     const { counter, setCounter } = useCounterContext();
-    const { color, fontSize } = useTitleColorContext();
+    const titleContext = useTitleColorContext();
 
-    const handleClick = () => {
+    const handleClickColor = (color) => {
+        titleContext.dispatch({ type: color });
+    };
+
+    const handleClickCounter = () => {
         setCounter(counter + 5);
     };
 
     return (
         <>
-            <h1 style={{ color: color, fontSize: fontSize }}>Projeto de Context com Routers</h1>
-            <p>O valor da constante global é: {counter}</p>
-            <button onClick={handleClick} >Contar</button>
+            <h1 style={{ color: titleContext.color, fontSize: titleContext.fontSize }}>Projeto de Context com Routers</h1>
+            <p>O valor do contador é {counter}</p>
+            <button onClick={handleClickCounter}>Contar mais 5</button>
+            <button onClick={() => handleClickColor("RED")}>Vermelho</button>
+            <button onClick={() => handleClickColor("BLUE")}>Azul</button>
         </>
     );
 }
