@@ -1,8 +1,6 @@
-﻿import { useContext } from 'react';
-import { CounterContext } from '../context/CounterContext';
-
+﻿import useCounterContext from "../hooks/useCounterContext";
 function Home() {
-    const { counter, setCounter } = useContext(CounterContext);
+    const { counter, setCounter } = useCounterContext();
     const handleClick = () => {
         setCounter(counter + 5);
     };
